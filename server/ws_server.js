@@ -24,6 +24,9 @@ let sessionshare = false;
 const clientIDs = new Map();
 const clientUsernames = new Map();
 
+// Kill process on SIGTERM (container)
+process.on("SIGTERM", () => process.exit(0));
+
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end("#users: " + clients.length + "\nsession-share: " + sessionshare);
